@@ -1,9 +1,9 @@
 import numpy as np
 import torch
-from VAE_face_gen_settings import RUN_MODE, CUT_TRAIN_IMAGE_FACE_AND_RESIZE, DATASET_DIR, CUTFACE_DATASET_DIR, TRAIN_LOOP, BATCH_SIZE, DEVICE
-from ml_utils import ImagesDataset
+from VAE_face_gen_settings import RUN_MODE, CUT_TRAIN_IMAGE_FACE_AND_RESIZE, DATASET_DIR, CUTFACE_DATASET_DIR, TRAIN_LOOP, GEN_FACE, INSPECT_DECODER_OUTPUT
 from face_detection_support import process_train_images, init_face_detection
-from torch.utils.data import DataLoader
+from VAE_face_gen_support import vae_train_face_gen_loop, generate_some_random_face, visually_compare_decoder_output_with_input
+
 
 
 if __name__ == '__main__':
@@ -17,6 +17,15 @@ if __name__ == '__main__':
 
     if RUN_MODE == TRAIN_LOOP:
         print('Training Loop .. .. ..')
-        faces_dataset = ImagesDataset(CUTFACE_DATASET_DIR, dataset_size=179500, device=DEVICE)
-        train_dataloader = DataLoader(faces_dataset, batch_size=BATCH_SIZE, shuffle=True)
+        vae_train_face_gen_loop()
+        exit()
+
+    if RUN_MODE == GEN_FACE:
+        print('Generating Random Face Using VAE Decoder .. .. ..')
+        generate_some_random_face()
+        exit()
+
+    if RUN_MODE == INSPECT_DECODER_OUTPUT:
+        print('Generating Random Face Using VAE Decoder .. .. ..')
+        visually_compare_decoder_output_with_input()
         exit()
