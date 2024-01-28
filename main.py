@@ -10,6 +10,8 @@ if __name__ == '__main__':
 
     print('Running VAE face gen .. .. .. ')
 
+    RUN_MODE = TRAIN_LOOP
+
     if RUN_MODE == CUT_TRAIN_IMAGE_FACE_AND_RESIZE:
         init_face_detection()
         process_train_images(DATASET_DIR, CUTFACE_DATASET_DIR)  # Extract faces from people images and store them

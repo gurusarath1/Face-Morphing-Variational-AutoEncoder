@@ -520,7 +520,7 @@ class ImagesDataset(Dataset):
         self.image_files = self.image_files[:self.dataset_size]
         print('Num Image Files taken = ', len(self.image_files))
 
-        self.img_transforms = transforms.Compose([transforms.ToTensor()])
+        self.img_transforms = transforms.Compose([transforms.ToTensor(), transforms.Resize((32,32))])
 
     def __len__(self):
         return self.dataset_size
